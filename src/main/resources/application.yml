@@ -16,3 +16,15 @@ spring:
       uris: localhost:9200
 logging:
   config: src/main/resources/log4j2-spring.xml
+  #Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-connections: 6500
+    accept-count: 1000
+    max-http-form-post-size: 2097152
+    threads:
+      max: 2500
+      min-spare: 500
+    connection-timeout: 12000
+
