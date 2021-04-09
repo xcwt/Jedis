@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript" th:href="@{/js/jquery-3.5.1.min.js}"></script>
+</head>
+<body>
+<button id="btn_secKill">秒杀商品</button>
+<div id="count_num"></div>
+<div id="result"></div>
+<script type="text/javascript">
+    var countNum = 0;
+    $(function(){
+        $("#btn_secKill").click(function(){
+            var json={"code":"111","num":2000};
+            for(var i = 0 ; i < 400 ; i++){
+                $.post("seckill",json,function(data){
+                    if(data != "排队人数太多，请稍后再试."){
+                        $("#result").append("<br />" + data + "<br />");
+                    }else{
+                        $("#result").append(data + " ");
+                    }
+                    if(data.indexOf("恭喜您，购买成功") != -1){
+                        countNum += 2000;
+                    }
+                    $("#count_num").text("总共卖出："+countNum);
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

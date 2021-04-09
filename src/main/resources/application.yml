@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: 192.168.207.130
+    host: 192.168.1.128
     port: 6379
     password: 123456
     database: 0
@@ -14,6 +14,25 @@ spring:
   elasticsearch:
     rest:
       uris: localhost:9200
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      #数据库
+    database-platform: org.hibernate.dialect.MySQLDialect
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/taotao?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
+  web:
+    resources:
+      static-locations: classpath:/
+
 logging:
   config: src/main/resources/log4j2-spring.xml
   #Tomcat
@@ -27,4 +46,6 @@ server:
       max: 2500
       min-spare: 500
     connection-timeout: 12000
+
+
 
